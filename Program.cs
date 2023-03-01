@@ -22,6 +22,14 @@ namespace LINQ
             // }
             var newScores = scores.Select(MultiplyBy2);   //this shortens the code using Select method from LINQ
 
+            foreach (var score in scores)
+            {
+                Console.WriteLine(score);
+            }
+
+            Console.WriteLine(scores.Count());
+            Console.WriteLine(newScores.Count());
+
             Console.ReadLine();
 
         }
