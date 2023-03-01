@@ -27,7 +27,7 @@ namespace LINQ
                 Console.WriteLine(score);
             }
 
-            Console.WriteLine(scores.Count());
+            Console.WriteLine(scores.Count);
             Console.WriteLine(newScores.Count());
 
             Console.ReadLine();
