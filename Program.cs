@@ -14,12 +14,13 @@ namespace LINQ
             //     return value * 2;
             // }
             var scores = new List<int> { 42, 100, 98, 15 };
-            var newScores = new List<int>();
-            foreach (var score in scores)
-            {
-                var doubled = MultiplyBy2(score);
-                newScores.Add(doubled);
-            }
+            // var newScores = new List<int>();
+            // foreach (var score in scores)
+            // {
+            //     var doubled = MultiplyBy2(score);
+            //     newScores.Add(doubled);
+            // }
+            var newScores = scores.Select(MultiplyBy2);   //this shortens the code using Select method from LINQ
 
             Console.ReadLine();
 
