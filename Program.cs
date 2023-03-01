@@ -15,6 +15,11 @@ namespace LINQ
         public double TotalRevenue { get; set; }
         public double Cost { get; set; }
         public double Budget { get; set; }
+
+        public double RevenuePerScreening()
+        {
+            return TotalRevenue / Screenings;
+        }
     }
     class Program
     {
@@ -37,7 +42,7 @@ namespace LINQ
 
             // Console.WriteLine();
 
-            var movies = new List<Movie>()
+            var listOfFilms = new List<Movie>()
             {
               new Movie()
               {
@@ -313,9 +318,56 @@ namespace LINQ
               }
             };
 
-            var movieNames = movies.Select(movie => movie.Name);
+            var movieNames = listOfFilms.Select(film => film.Name);
+            var movieNamesWithIndex = listOfFilms.Select((film, index) => $"The movie named {film.Name} is at position {index}");
+            // var tacoTuesday = listOfFilms.Select((film, index) => index * 100);
 
-            Console.WriteLine();
+            IEnumerable<double> averages = listOfFilms.Select(movie => movie.RevenuePerScreening());
+
+            var popularFilms = listOfFilms.Where(film => film.Screenings >= 100);      //.Select(film => film.Name);
+
+
+
+            foreach (var minute in movieNames)
+            {
+                Console.WriteLine(minute);
+            }
+
+            double totalRevenue = popularFilms.Aggregate(0.0, (fuck1, fuck2) => fuck1 + fuck2.TotalRevenue);
+
+            Console.WriteLine(totalRevenue);
+
+            IEnumerable<double> allRevenues = listOfFilms.Select(fuck3 => fuck3.TotalRevenue);
+            double totalRevenue3 = allRevenues.Sum();
+            Console.WriteLine($"Total revenue for all {movieNames.Count()} movies is {totalRevenue3}. ");
+            Console.WriteLine($"Total for the {popularFilms.Count()} movies that were screened more than 100 times is {totalRevenue}. ");
+
+            double totalRev4 = listOfFilms.Sum(fuck4 => fuck4.TotalRevenue); //coding the above in one line.
+            Console.WriteLine($"Another way to code the total revenues of all {movieNames.Count()} movies. Which is {totalRev4}. ");
+
+            bool oldMovies = listOfFilms.All(fuck => fuck.ReleasedDate.Year > 1965);
+            bool anyOldMovies = popularFilms.Any(fuk => fuk.ReleasedDate.Year > 1965);
+
+            Console.WriteLine(oldMovies);
+            Console.WriteLine(anyOldMovies);
+
+            int movies1 = listOfFilms.Count(fak => fak.PricePerTicket > 10);
+            int movies2 = listOfFilms.Where(fak => fak.PricePerTicket > 10).Count();
+
+            Console.WriteLine($"Two ways to code the same info of how many movies cost more than 10 bucks. {movies1} {movies2}. ");
+
+            var favoriteMovie = listOfFilms.FirstOrDefault(fak => fak.Name == "Jaws");
+
+            if (favoriteMovie == null)
+            {
+                Console.WriteLine("Nope! Hot Here!");
+            }
+            else
+            {
+                Console.WriteLine(favoriteMovie.Name);
+            };
+
+
 
         }
     }
