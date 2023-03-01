@@ -21,7 +21,7 @@ namespace LINQ
             //     newScores.Add(doubled);
             // }
             var newScores = scores.Select(score => score * 2);   //this shortens the code using Select method from LINQ // (replaces Func<>)
-
+            var slightlyBetterScore = scores.Select(score => score + 1);
             foreach (var score in scores)
             {
                 Console.WriteLine(score);
