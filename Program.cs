@@ -8,7 +8,7 @@ namespace LINQ
     {
         static void Main(string[] args)
         {
-            Func<int, int> MultiplyBy2 = value => value * 2;
+            // Func<int, int> MultiplyBy2 = score => score * 2;
             // int MultiplyBy2(int value)
             // {
             //     return value * 2;
@@ -20,7 +20,7 @@ namespace LINQ
             //     var doubled = MultiplyBy2(score);
             //     newScores.Add(doubled);
             // }
-            var newScores = scores.Select(MultiplyBy2);   //this shortens the code using Select method from LINQ
+            var newScores = scores.Select(score => score * 2);   //this shortens the code using Select method from LINQ // (replaces Func<>)
 
             foreach (var score in scores)
             {
